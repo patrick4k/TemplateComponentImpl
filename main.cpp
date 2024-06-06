@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
  
- 
 template<class T>
 class ComponentProvider
 {
@@ -25,7 +24,7 @@ public:
     template<class TFirst, class TSecond, class... TRest>
     decltype(auto) GetComponent()
     {
-        return ComponentProvider<TFirst>::ReturnComponent().template GetComponent<TSecond, TRest...>();
+        return GetComponent<TFirst>().template GetComponent<TSecond, TRest...>();
     }
 };
  
