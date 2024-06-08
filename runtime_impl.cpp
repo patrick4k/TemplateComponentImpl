@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <typeindex>
+#include <memory>
 
 #define DBGEXPR(expr)  std::cout << #expr << " = " << std::to_string(expr) << std::endl;
 
