@@ -4,9 +4,11 @@
 #include <unordered_map>
 #include <typeindex>
 #include <type_traits>
+#include <vector>
+#include <memory>
 
-#define DBGSTR(expr)  std::cout << #expr << " = " << expr << std::endl;
-#define DBGEXPR(expr)  std::cout << #expr << " = " << std::to_string(expr) << std::endl;
+#define DBGSTR(expr)  std::cout << #expr << " = " << expr << std::endl << std::endl;
+#define DBGEXPR(expr)  std::cout << #expr << " = " << std::to_string(expr) << std::endl << std::endl;
 
 template<typename T, typename... Ts>
 struct is_in_pack : std::false_type {};
@@ -146,7 +148,7 @@ int main()
     }
     catch (const std::exception& e)
     {
-        std::cout << "Could not unwrap StringComponent\n e.what() = " << e.what() << std::endl;
+        std::cout << "Could not unwrap StringComponent\n e.what() = " << e.what() << std::endl << std::endl;
     }
 
     // Construct from the AddComponent call
