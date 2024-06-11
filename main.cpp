@@ -40,7 +40,7 @@ private:
 
 class RuntimeComponentContainer
 {
-public:
+protected:
     template<class T, class... TArgs>
     void AddComponentToMap(TArgs... args)
     {
@@ -52,13 +52,12 @@ public:
     {
         _map.erase(typeid(T));
     }
-
-protected:
+    
     template<class T>
     T& ReturnComponent()
     {
         const auto& ptr = _map[typeid(T)].get();
-        if (ptr) return *dynamic_cast<T*>(ptr);
+        if (ptr) return *reinterpret_cast<T*>(ptr);
         throw std::runtime_error("Failed to find component: " + std::string(typeid(T).name()));
     }
 
@@ -102,7 +101,8 @@ public:
         {
             return ComponentProvider<T>::ReturnComponent();
         }
-        else {
+        else 
+        {
             return RuntimeComponentContainer::ReturnComponent<T>();
         }
     }
